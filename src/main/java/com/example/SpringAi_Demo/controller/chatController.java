@@ -1,6 +1,9 @@
 package com.example.SpringAi_Demo.controller;
 
+import java.io.IOException;
+
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.image.ImageResponse;
 //import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.SpringAi_Demo.Service.ChatImpl;
 
+import jakarta.servlet.http.HttpServletResponse;
 import reactor.core.publisher.Flux;
 
 @RestController
@@ -56,6 +60,13 @@ public class chatController {
 	public ResponseEntity<Flux<String>> getChatResponseAsSmallChunks(@RequestParam String message, @PathVariable String uid){
 		Flux<String> content = chatImpl.streamChat(message, uid);
 		return ResponseEntity.ok(content);
+	}
+	
+	@GetMapping("/generate-image")
+	public void genaerateImage(HttpServletResponse res, @RequestParam String message) throws IOException{
+		ImageResponse image = chatImpl.generateImage(message);
+		String imageURL = image.getResult().getOutput().getUrl();
+		res.sendRedirect(imageURL);
 	}
 	
 }
