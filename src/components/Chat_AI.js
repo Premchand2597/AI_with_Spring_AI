@@ -10,18 +10,38 @@ function Chat_AI() {
     setInitialResponseText("Response is generating... Please wait!")
     try {
       const res = await fetch(
-        `http://localhost:9090/stream-chat/Premchand?message=${encodeURIComponent(prompt)}`
+        `http://192.168.1.66:9090/stream-chat/Saniya?message=${encodeURIComponent(prompt)}`
       );
 
       if (!res.ok) {
         throw new Error(`HTTP error! Status: ${res.status}`);
       }
 
-      // Convert response to text (since backend returns Flux<String>)
-      const text = await res.text();
-      setInitialResponseText("")
-      setResponse(text);
-      setPrompt("");
+    // Convert response to text (since backend returns Flux<String>)
+    //   const text = await res.text();
+    //   setInitialResponseText("")
+    //   setResponse(text);
+    //   setPrompt("");
+
+      setInitialResponseText("");
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder("utf-8");
+    //let partialText = "";
+
+    // Continuously read data from the stream
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break; // Stream ended
+      const chunk = decoder.decode(value, { stream: true });
+      //partialText += chunk;
+
+      // Update the response as chunks arrive
+      setResponse((prev) => prev + chunk);
+    }
+
+    setPrompt("");
+
     } catch (error) {
       console.error("Error fetching AI response:", error);
       setResponse("Error: Could not fetch AI response.");

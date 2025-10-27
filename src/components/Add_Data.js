@@ -16,6 +16,7 @@ function Add_data() {
     try {
       const res = await fetch("http://192.168.1.66:9090/get-data");
       const result = await res.json();
+      console.log("result == "+JSON.stringify(result));
       setData(result);
     } catch (error) {
       console.error("Error fetching data:", error);
