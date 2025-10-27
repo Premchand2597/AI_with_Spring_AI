@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-list li:hover {
+  background-color: blue;
+}
+
+.nav-list li:hover a {
+  color: #fff;
+  font-weight: bold;
+}
+
+.active{
+  background-color: blue;
+  color: #fff;
+  font-weight: bold;
+}
