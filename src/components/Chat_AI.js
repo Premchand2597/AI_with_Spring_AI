@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import BaseUrl from "./BaseUrl";
 
 function Chat_AI() {
   const [prompt, setPrompt] = useState("");
@@ -10,7 +11,7 @@ function Chat_AI() {
     setInitialResponseText("Response is generating... Please wait!")
     try {
       const res = await fetch(
-        `http://192.168.1.66:9090/stream-chat/Saniya?message=${encodeURIComponent(prompt)}`
+        `${BaseUrl}stream-chat/Arun?message=${encodeURIComponent(prompt)}`
       );
 
       if (!res.ok) {
@@ -51,29 +52,29 @@ function Chat_AI() {
   return (
     <>
       <div style={{ margin: "20px" }}>
-        <textarea
+        <textarea className="form-control"
           placeholder="Enter your prompt"
           cols={100}
           rows={5}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
-          style={{ padding: "10px", fontSize: "16px" }}
+        //   style={{ padding: "10px", fontSize: "16px" }}
         />
 
         <br />
         <br />
 
-        <button
-          style={{
-            border: "none",
-            outline: "none",
-            padding: "10px 20px",
-            cursor: "pointer",
-            background: "green",
-            color: "#fff",
-            fontWeight: "bold",
-            borderRadius: "5px",
-          }}
+        <button className="btn btn-primary"
+        //   style={{
+        //     border: "none",
+        //     outline: "none",
+        //     padding: "10px 20px",
+        //     cursor: "pointer",
+        //     background: "green",
+        //     color: "#fff",
+        //     fontWeight: "bold",
+        //     borderRadius: "5px",
+        //   }}
           onClick={generateResponse}
         >
           Ask AI

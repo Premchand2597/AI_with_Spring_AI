@@ -10,14 +10,14 @@ function App() {
     <div className="App">
       <Router>
           <div style={{width: "100%", height: "95vh", margin: "1% auto", display: "flex", 
-          justifyContent: "space-between", gap: "5px"}}>
-            <div style={{width: "19%", height: "100%", overflow: "auto", background: "#ddd", padding: "5px"}}>
+          justifyContent: "space-between"}}>
+            <div style={{width: "20%", height: "100%", overflow: "auto", background: "#E5E7EB", padding: "5px"}}>
                 <Menu/>
             </div>
-            <div style={{width: "79%", height: "100%", overflow: "auto", background: "#ccc", padding: "5px"}}>
+            <div style={{width: "79%", height: "100%", overflow: "auto", background: "#E5E7EB", padding: "5px"}}>
               <Routes>
-                <Route path='/' element={<Chat_AI/>} exact />
-                <Route path='/addData' element={<Add_data/>} exact />
+                <Route path='/' element={<Chat_AI/>} />
+                <Route path='/addData' element={<Add_data/>} />
               </Routes>
             </div>
         </div>

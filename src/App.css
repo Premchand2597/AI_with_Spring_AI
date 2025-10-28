@@ -38,7 +38,7 @@
 }
 
 .nav-list li:hover {
-  background-color: blue;
+  background-color: #2B7FFF;
 }
 
 .nav-list li:hover a {
@@ -47,7 +47,7 @@
 }
 
 .active{
-  background-color: blue;
+  background-color: #2B7FFF;
   color: #fff;
   font-weight: bold;
 }
