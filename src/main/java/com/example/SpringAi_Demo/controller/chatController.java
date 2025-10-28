@@ -7,6 +7,7 @@ import org.springframework.ai.image.ImageResponse;
 //import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import reactor.core.publisher.Flux;
 
 @RestController
+@CrossOrigin(origins = "http://192.168.1.66:3000")
 public class chatController {
 
 	/*private ChatClient chatClient;

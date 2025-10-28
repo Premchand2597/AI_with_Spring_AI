@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import com.example.SpringAi_Demo.Entity.Dept_Entity;
 import com.example.SpringAi_Demo.Service.AddDept_Service;
 
 @Controller
+@CrossOrigin(origins = "http://192.168.1.66:3000")
 public class AddDept_Controller {
 
 	@Autowired
