@@ -11,7 +11,7 @@ function Chat_AI() {
     setInitialResponseText("Response is generating... Please wait!")
     try {
       const res = await fetch(
-        `${BaseUrl}stream-chat/Arun?message=${encodeURIComponent(prompt)}`
+        `${BaseUrl}stream-chat/Prem?message=${encodeURIComponent(prompt)}`
       );
 
       if (!res.ok) {

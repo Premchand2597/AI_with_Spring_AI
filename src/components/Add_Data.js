@@ -2,33 +2,14 @@ import React, { useState, useEffect } from "react";
 import BaseUrl from "./BaseUrl";
 import { Link } from "react-router-dom";
 
-function Add_data() {
+function Add_data(props) {
 
   const [formData, setFormData] = useState({
     role_name: "",
     description: "",
     dept_id: "",
   });
-
   const [message, setMessage] = useState("");
-  const [data, setData] = useState([]);
-
-  // Fetch data from backend
-  const fetchData = async () => {
-    try {
-      const res = await fetch(`${BaseUrl}get-data`);
-      const result = await res.json();
-      console.log("result == "+JSON.stringify(result));
-      setData(result);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  // Load data on first render
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   // Handle input change
   const handleChange = (e) => {
@@ -59,7 +40,7 @@ function Add_data() {
       setFormData({ role_name: "", description: "", dept_id: "" });
 
       // Refresh list
-      fetchData();
+      props.reloadData();
     } catch (error) {
       console.error(error);
       setMessage("Error: Could not insert data.");
@@ -81,7 +62,6 @@ function Add_data() {
         <h3>Add Department Role</h3>
 
         <input className="form-control"
-        //   style={{ width: "80%", height: "25px" }}
           type="text"
           name="role_name"
           placeholder="Enter role name"
@@ -91,7 +71,6 @@ function Add_data() {
         <br />
 
         <input className="form-control"
-        //   style={{ width: "80%", height: "25px" }}
           type="text"
           name="description"
           placeholder="Enter description"
@@ -101,7 +80,6 @@ function Add_data() {
         <br />
 
         <input className="form-control"
-        //   style={{ width: "80%", height: "25px" }}
           type="number"
           name="dept_id"
           placeholder="Enter dept id"
@@ -112,16 +90,6 @@ function Add_data() {
         <br />
 
         <button className="btn btn-primary"
-        //   style={{
-        //     border: "none",
-        //     outline: "none",
-        //     padding: "10px 20px",
-        //     cursor: "pointer",
-        //     background: "blue",
-        //     color: "#fff",
-        //     fontWeight: "bold",
-        //     borderRadius: "5px",
-        //   }}
           onClick={handleSubmit}
         >
           Add
@@ -130,53 +98,6 @@ function Add_data() {
         <Link className="btn btn-success mx-2" to="/">Ask AI</Link>
 
         {/* <p style={{ marginTop: "10px", fontWeight: "bold" }}>{message}</p> */}
-      </div>
-
-      {/* Display Table */}
-      <div
-        style={{
-          width: "70%",
-          margin: "20px auto",
-          background: "#f7f7f7",
-          padding: "15px",
-          borderRadius: "5px",
-        }}
-      >
-        <h3>Department Roles List</h3>
-        <table className="table table-hover"
-        //   border="1"
-        //   cellPadding="8"
-        //   style={{
-        //     width: "100%",
-        //     borderCollapse: "collapse",
-        //     textAlign: "center",
-        //   }}
-        >
-          <thead>
-            <tr>
-              <th>Role ID</th>
-              <th>Role Name</th>
-              <th>Description</th>
-              <th>Dept ID</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.length > 0 ? (
-              data.map((item) => (
-                <tr key={item.role_id}>
-                  <td>{item.role_id}</td>
-                  <td>{item.role_name}</td>
-                  <td>{item.description}</td>
-                  <td>{item.dept_id}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="4">No records found</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
       </div>
     </>
   );

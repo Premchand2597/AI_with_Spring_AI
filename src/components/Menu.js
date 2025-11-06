@@ -23,10 +23,10 @@ const Menu = () =>{
                     </Link>
             </li>
 
-            <li className={location.pathname === "/addData" ? "active" : ""} 
+            <li className={location.pathname === "/displayData" ? "active" : ""} 
                 style={{padding: "10px", cursor: "Pointer", marginTop: "5px", borderRadius: "10px"}}>
-                    <Link className={location.pathname === "/addData" ? "active" : ""} 
-                            style={{textDecoration: "none"}} to="/addData">
+                    <Link className={location.pathname === "/displayData" ? "active" : ""} 
+                            style={{textDecoration: "none"}} to="/displayData">
                             Add &amp; View Data
                     </Link>
             </li>

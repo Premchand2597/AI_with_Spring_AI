@@ -2,6 +2,7 @@ import './App.css';
 import Add_data from './components/Add_Data';
 import Button from './components/Button';
 import Chat_AI from './components/Chat_AI';
+import DisplayData from './components/DisplayData';
 import Menu from './components/Menu';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
@@ -17,7 +18,7 @@ function App() {
             <div style={{width: "79%", height: "100%", overflow: "auto", background: "#E5E7EB", padding: "5px"}}>
               <Routes>
                 <Route path='/' element={<Chat_AI/>} />
-                <Route path='/addData' element={<Add_data/>} />
+                <Route path='/displayData' element={<DisplayData/>} />
               </Routes>
             </div>
         </div>
